@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<title>Wise Desk</title>
+
+<link rel="stylesheet" type="text/css" href="css/common.css"/>
+<link rel="stylesheet" type="text/css" href="css/style.css"/>
+<link rel="stylesheet" type="text/css" href="css/slick.css"/>
+<link rel="stylesheet" type="text/css" href="css/slick-theme.css"/>
+<link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:300,400,500,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,500&display=swap" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+	window.onload = function(){
+		setTimeout(function(){
+			scrollTo(0,0);
+		},100);
+	}
+	$( "a" ).click(function( event ) {
+		event.preventDefault();
+		});
+	$('.m-menu-icon').click(function() {
+		$('.m_menu_in').toggleClass('show');
+		$('.m-menu-icon').toggleClass('active');
+		$('.layer').toggleClass('active');
+	});
+
+	$('.this').click(function() {
+		$('.m_menu_in').removeClass('show');
+		$('.layer').removeClass('active');
+		$('.m-menu-icon').removeClass('active');
+
+	});
+
+	$('.logo').click(function(){
+		$('html, body').animate({scrollTop : 0},1000);
+	});
+
+	$('.m_logo').click(function(){
+		$('html, body').animate({scrollTop : 0},1000);
+	});
+
+	$('.intro').click(function(){
+		$('html, body').animate({scrollTop : 0},1000);
+	});
+
+	$('.totop').click(function(){
+		$('html, body').animate({scrollTop : 0},1000);
+	});
+
+	$('#slide2 .content .cont_wrap .cont .float_l p').click(function(){ 
+		$(this).toggleClass('active');
+	});
+
+	$('.shortcut span').click(function(){ 
+		$('.shortcut').css('display','none');
+	});
+
+	$(window).scroll(function(){
+		$('#menu').addClass('fixed');
+		if($('#menu').offset().top < 50){
+			$('#menu').removeClass('fixed');
+		}
+
+		$('#m_menu').addClass('fixed');
+		if($('#m_menu').offset().top < 50){
+			$('#m_menu').removeClass('fixed');
+		}
+	
+	});
+	
+	
+});
+
+
+</script>
+<script type="text/javascript">
+$(document).ready(function(e) {
+    $('.service_tit').click(function(){
+    
+    var subStat = $(this).next().attr('class');
+    console.log(subStat);
+    
+    var sertitStat = $(this).attr('class');
+    console.log(sertitStat);
+    $('.service_tit').removeClass('active');
+    
+    if(sertitStat != 'service_tit active'){
+        $('.sub').slideUp();
+        $(this).addClass('active');
+        $(this).next().slideToggle();
+    }else{
+        $(this).next().slideUp();
+        $(this).removeClass('active');
+    }
+    });
+});
+    function resetAll(){
+   document.apply.reset(); }
+</script>
+
+<script>
+jQuery(document).ready(function($) {
+	$(".scrollClick").click(function(event){            
+	event.preventDefault();
+	$('html,body').animate({scrollTop:$(this.hash).offset().top - 90}, 1000);
+	});
+});
+</script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+</head>
+<body>
+<div id="wrap" class="wrap">
+	<div class="shortcut">
+		<p><span>디자인 전문 아웃소싱 서비스 와이즈데스크</span><a href="#" onClick="location.href='index.html'">소개 자료 보기&nbsp;&nbsp;></a></p><span class="close"></span>
+	</div>
+	<div id="menu">
+		<div class="inner_menu">
+			<a href="#" class="logo" onClick="window.location.reload(true);"><img src="img/logo.png" alt="와이즈데스크 로고" /></a>
+			<ul>
+				<li><a href="#" class="intro">소개</a></li>
+				<li><a href="#slide4" class="scrollClick">서비스활용</a></li>
+				<li><a href="#slide8" class="scrollClick">회사소개</a></li>
+				<li><a href="#slide7" class="scrollClick">도입문의</a></li>
+				<li><a href="#" onClick="location.href='sub_price.html'">요금안내</a></li>
+				<li><a href="#" onClick="location.href='sub_print.html'">인쇄배송서비스</a></li>
+			</ul>
+			<a href="#" class="login">로그인</a>
+		</div>
+	</div>
+
+	<!--//menu-->
+
+	<div id="m_menu">
+		<a href="#" class="m-menu-icon"></a>
+		<a href="#" class="m_logo"><img src="img/m_logo.png" alt="와이즈데스크 로고" /></a>
+		<a href="#" class="m_login"><img src="img/m_ico_login.png"></a>
+		<div class="m_menu_in">
+			<ul>
+				<li><a href="#" class="intro this">소개</a></li>
+				<li><a href="#slide4" class="scrollClick this">서비스활용</a></li>
+				<li><a href="#slide8" class="scrollClick this">회사소개</a></li>
+				<li><a href="#slide7" class="scrollClick this">도입문의</a></li>
+				<li><a href="#" onClick="location.href='sub_price.html'" class="this">요금안내</a></li>
+				<li><a href="#" onClick="location.href='sub_print.html'" class="this">인쇄배송서비스</a></li>
+			</ul>
+			<a href="#slide7" class="ask scrollClick this"><span>도입문의</span></a>
+			<!-- <a href="#" class="join"><span>회원가입</span></a> -->
+		</div>
+	</div>
+	<div class="layer"></div>
+	
+
+	<!--//m_menu-->
+			
+	<div id="quick_request">
+		<ul>
+			<li><a href="#">와이즈데스크<br/>소개자료</a></li>
+			<li><a href="#" onClick="location.href='sub_print.html'">인쇄/배송<br/>전문 서비스</a></li>
+			<li><a href="#" class="video">서비스 소개<br/>영상보기</a></li>
+			<li><a href="#">서비스<br/>체험하기</a></li>
+		</ul>
+		<a href="#" class="totop"><img src="img/btn_top.png"></a>
+	</div>
+	
+	<div class="content_wrap">	
+		<div class="section section1" id="slide1">
+			<div class="content">
+				<div class="slick_wrap">
+					<div class="slick_sl1">
+						<div class="text_box">
+							<span class="t_tit">와이즈데스크 시즌2</span>
+							<h2 class="title"><span>디자인수정 전문 서비스</span>부탁해! 수정대리</h2>
+							<span class="b_tit">"부탁해! 수정대리"는 와이즈데스크 시즌2에서 제공하는<br/>디자인수정 전문서비스 브랜드명 입니다</span>
+							<ul>
+								<li><a href="#slide7" class="ask scrollClick">도입문의</a></li>
+								<!-- <li><a href="#" class="join">회원가입</a></li> -->
+							</ul>
+						</div>
+					</div>
+					<div class="slick_sl2">
+						<div class="text_box">
+							<h2 class="title">IT기반 똑똑한<br/>디자인전문 아웃소싱 서비스<br/><span>와이즈데스크!</span></h2>
+							<h2 class="title m_title">IT기반 똑똑한<br/>디자인관리시스템<br/><span>와이즈데스크!</span></h2>
+							<span class="b_tit">“부탁해! 수정대리”는 와이즈데스크가 제공하는<br/>디자인 수정 전문서비스 입니다.</span>
+							<ul>
+								<li><a href="#slide7" class="ask scrollClick">도입문의</a></li>
+								<!-- <li><a href="#" class="join">회원가입</a></li> -->
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- //section1 -->
+		<div class="section section2" id="slide2">
+			<div class="content">
+				<h2 class="title">디자인업무가<strong>확!</strong>달라집니다</h2>
+				<span>와이즈데스크 시즌1의 2,556개 가맹점을 통해 <strong>입증되었습니다</strong></span>
+				<div class="cont_wrap">
+					<div class="cont cont1">
+						<div class="float_l"><img src="img/ico_2-1-1.png"></div>
+						<div class="float_l float_l2"><img src="img/ico_2-1-2.png"></div>
+						<div class="float_l">
+							<h3>작업속도가 두 배 이상 빨라졌습니다.</h3>
+							<p>속도를 낼 수 없는 디자인업무가 수두룩했던 A프랜차이즈!<br/>
+								잦은 수정요청과 작업병목으로 심지어 일주일 이상 지연되던 작업도 많았죠.<br/>
+								이 모든 문제들이 ‘부탁해! 수정대리’ 도입 후 모두 사라졌습니다.<br/>
+								가맹점의 불만과 디자이너의 업무스트레스를 한번에 잡았습니다.</p>
+						</div>
+					</div>
+					<div class="cont cont2">
+						<div class="float_l"><img src="img/ico_2-2-1.png"></div>
+						<div class="float_l float_l2"><img src="img/ico_2-2-2.png"></div>
+						<div class="float_l">
+							<h3>직접 운영 시 보다 48% 이상 비용이 절감되었습니다.</h3>
+							<p>고객의 작업요청이 늘어 3명의 디자이너로도 업무처리가 벅찼던 B디자인팀!<br/>
+							추가 채용 대신 절반의 비용으로 ‘부탁해!수정대리’를 도입하여<br/>모든 문제를 해결했습니다. 또한 기존의 인하우스 디자이너는<br/>보다 중요한 일에 집중할 수 있게 되어 업무효율도 크게 높아졌습니다.</p>
+						</div>
+					</div>
+					<div class="cont cont3">
+						<div class="float_l"><img src="img/ico_2-3-1.png"></div>
+						<div class="float_l float_l2"><img src="img/ico_2-3-2.png"></div>
+						<div class="float_l">
+							<h3>제각각 발생하던 디자인관리의 문제가 <span class="enter">깔끔하게 사라졌습니다!</span></h3>
+							<p>커뮤니케이션의 혼란과 어수선한 파일관리 등으로 어려움을 겪던 C디자인회사!<br/>부탁해 수정대리를 도입하여 커뮤니케이션 오류, 파일 분실,<br/>작업소스 훼손, 중복작업, 재작업 등 제각각 발생하던 문제가<br/>완벽하게 사라지고 업무생산성이 놀랍게 향상되었습니다.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- //section2 -->
+		<div class="section section3" id="slide3">
+			<div class="content">
+				<h2 class="title">"디자인수정" 결코 간단하지 않습니다</h2>
+				<div>
+					<div class="cont cont1">
+						<img src="img/ico_3-1.png">
+						<p>뒤죽박죽 파일관리!</p>
+						<span>수정이 거듭될 수록 관리할 파일도 많아지고 파일명 지정도 난감하고 저장폴더도 헷갈리죠. 할 일은 많은데 끝없이 이어지는 디자인 파일들까지 제대로 관리가 되지 않아 실수도 많아집니다.</span>
+					</div>
+					<div class="cont cont2">
+						<img src="img/ico_3-2.png">
+						<p>반복적인 단순수정작업!</p>
+						<span>명함, 쿠폰의 이미지ㆍ텍스트 수정작업은 비교적 간단한 일인듯 보이지만 수십 건씩 매일 반복되면 결코 쉬운 업무가 아닙니다. 접수부터 작업 후 고객확인까지 정말 눈 코 뜰새 없이 바빠집니다.</span>
+					</div>
+					<div class="cont cont3">
+						<img src="img/ico_3-3.png">
+						<p>악순환되는 작업지연!</p>
+						<span>전화, 이메일, 카톡, SNS로 요청이 밀려들면 작업은 계속 늦어지고 여기저기서 불평이 늘어납니다. 도무지 줄어들지 않는 수정작업! 디자이너들은 스트레스가 쌓이고 점점 지쳐갑니다.</span>
+					</div>
+					<div class="cont cont4">
+						<img src="img/ico_3-4.png">
+						<p>잦은 퇴사, 높은 관리비용 발생!</p>
+						<span>지속 반복되는 수정작업으로 인해 축적된 스트레스는 결국 디자이너 퇴사의 주요 원인이 되고 또한 잦은 교체로 인한 작업혼란과 업무공백은 높은 관리비용을 발생시키게 됩니다.</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- //section3 -->
+		<div class="section section4" id="slide4">
+			<div class="content">
+				<div class="w_content">
+					<h2 class="title">다양한 비즈니스와 협업이 가능한 <strong class="enter">"부탁해! 수정대리"<span>"부탁해! 수정대리"는 다양한 비즈니스에 효과적인 업무파트너로 활용할 수 있습니다.</span></strong></h2>
+					<ul>
+						<li class="slick_wrap2_1 slick-Nav active" id="nav_0"><a>디자인기획사</a></li>
+						<li class="slick_wrap2_2 slick-Nav" id="nav_1"><a>프리랜서디자이너</a></li>
+						<li class="slick_wrap2_3 slick-Nav" id="nav_2"><a>프랜차이즈 기업</a></li>
+						<li class="slick_wrap2_4 slick-Nav" id="nav_3"><a>디지털디스플레이</a></li>
+						<li class="slick_wrap2_5 slick-Nav" id="nav_4"><a>광고대행사</a></li>
+						<li class="slick_wrap2_6 slick-Nav" id="nav_5"><a>인쇄소</a></li>
+						<li class="slick_wrap2_7 slick-Nav" id="nav_6"><a>디자인상품 판매기업</a></li>
+						<!-- <li class="slick_wrap2_8 slick-Nav" id="nav_7"><a>리셀러-디자인관리자</a></li> -->
+					</ul>
+					<div class="slick_wrap2 slick_wrap_sup">
+						<div class="cont cont1 g1" id="slick_wrap2_1">
+							<h3>디자인기획사</h3>
+							<span>디자인기획사, 웹에이전시, SI기업까지<br/>디자인수정은 맡기고 고객확보에 집중하세요</span>
+							<p>청구비용은 적은데 신경은 많이 쓰이는 수정작업! 특히 단순하고<br/>반복적인 수정작업은 업무 스트레스도 많고 파일관리도 어렵습니다.<br/>이제 수정작업은 맡기시고 고객확보에 전념하세요.</p>
+							<!-- <a href="#" class="btn_more">더보기&nbsp&nbsp+</a> -->
+						</div>
+						<div class="cont cont2 g2" id="slick_wrap2_2">
+							<h3>프리랜서 디자이너</h3>
+							<span>내 디자인작업을 도와줄 디자이너비서를<br/>고용하세요</span>
+							<p>혼자서 모든 일을 처리해야만 하는 프리랜서에게 수정작업은 시간과<br/>비용을 빼앗는 골치 아픈 일이지요.<br/>수정작업은 ‘부탁해! 수정대리’에 맡기고 기획과 디자인 작업, 고객미팅,<br/>고객관리에 집중하세요.<br/>“부탁해! 수정대리”는 보조디자이너 역할을 톡톡히 해내는<br/>디자이너비서 서비스입니다.</p>
+							<!-- <a href="#" class="btn_more">더보기&nbsp&nbsp+</a> -->
+						</div>
+						<div class="cont cont3 g3" id="slick_wrap2_3">
+							<h3>프랜차이즈 기업</h3>
+							<span>가맹점에 모두 똑같은 홍보물이 아닌<br/>딱 맞는 맞춤형디자인을 제공하세요</span>
+							<p>가맹점에 가장 중요한 마케팅 수단인 매장홍보 배너, 메뉴안내POP,<br/>이벤트홍보 현수막 등의 인쇄물! 상권특성과 고객성향에 딱 맞는<br/>내용으로 제공되어야 합니다. 이제는 모든 가맹점에 똑같은 홍보물을<br/>일제히 제공하지 말고 각 지점에 딱 맞는 맞춤형으로 제공하세요.</p>
+							<!-- <a href="#" class="btn_more">더보기&nbsp&nbsp+</a> -->
+						</div>
+						<div class="cont cont4 g4" id="slick_wrap2_4">
+							<h3>디지털디스플레이</h3>
+							<span>디지털디스플레이, 디지털사이니지 시장에서<br/>효과적인 컨텐츠관리로 경쟁력을 확보하세요</span>
+							<p>점점 더 빠르고 다양한 컨텐츠를 필요로 하고 있는 디지털디스플레이 시장!<br/>컨텐츠 관리 쉽지 않으시죠? 치열한 환경에서 효과적인 컨텐츠<br/>관리는 강력한 경쟁력입니다.<br/>체계적인 컨텐츠 관리와 함께 타겟에 맞는 디자인 수정 및 관리<br/>서비스를 제공해보세요.</p>
+							<!-- <a href="#" class="btn_more">더보기&nbsp&nbsp+</a> -->
+						</div>
+						<div class="cont cont5 g5" id="slick_wrap2_5">
+							<h3>광고대행사</h3>
+							<span>수정서비스는 세밀하고 정교한 타겟마케팅을<br/>가능하게 하는 강력한 무기입니다</span>
+							<p>점점 세분화, 개인화, 정교화되고 있는 광고 커뮤니케이션!<br/>초정밀 마케팅, 마이크로밸류 마케팅 같은 보다 정교하고 세밀한<br/>형태의 마케팅에 강력한 파트너가 되어 드립니다.</p>
+							<!-- <a href="#" class="btn_more">더보기&nbsp&nbsp+</a> -->
+						</div>
+						<div class="cont cont6 g6" id="slick_wrap2_6">
+							<h3>인쇄소</h3>
+							<span>고객이 더 저렴한 경쟁사로 떠날까 걱정되시나요?<br/>수정서비스가 고객충성도를 높여드립니다</span>
+							<p>어렵게 확보한 고객이 더 저렴한 경쟁사로 떠날까 걱정이시죠?<br/>“부탁해! 수정대리”를 통해 고객에게 받은 디자인파일을 관리해 보세요.<br/>고객의 이탈율은 확실히 줄어들고 충성도를 높일 수 있습니다.</p>
+							<!-- <a href="#" class="btn_more">더보기&nbsp&nbsp+</a> -->
+						</div>
+						<div class="cont cont7 g7" id="slick_wrap2_7">
+							<h3>디자인상품 판매기업</h3>
+							<span>판촉물, 인쇄물, 캐릭터상품에는<br/>고객맞춤형 디자인서비스가 필수입니다</span>
+							<p>홍보물, 판촉물, 캐릭터상품 등은 고객이 원하는 디자인을<br/>제공해야하는 대표적인 아이템이지만 고객의 입맛에 딱 맞는 디자인<br/>작업을 원활하게 진행하기는 어려우시죠?<br/>“부탁해! 수정대리”를 활용해보세요. 더욱 만족스러운 디자인서비스<br/>제공이 가능합니다.</p>
+							<!-- <a href="#" class="btn_more">더보기&nbsp&nbsp+</a> -->
+						</div>
+						<!-- <div class="cont cont8 g8" id="slick_wrap2_8">
+							<h3>리셀러-디자인관리자</h3>
+							<span>지역상점의 디자인 관리자가 되어보세요</span>
+							<p>전국 각 지역 수많은 개별 매장들에 필요한<br/>인쇄물들을 관리하고 제작을 지원하는 리셀러가 되어보세요<br/>다양한 수익창출의 기회를 잡을 수 있습니다.</p>
+							<a href="#" class="btn_more">더보기&nbsp&nbsp+</a>
+						</div> -->
+					</div>
+				</div>
+			</div>
+			<div class="m_content">
+					<h2 class="title">여러 비즈니스와 협업이 가능한 수정서비스<span>"부탁해! 수정대리"는 다양한 비즈니스에 효과적인 업무파트너로 활용할 수 있습니다.</span></h2>
+					<ul class="service_wrap">
+						<li class="cont cont1 g1">
+							<p class="service_tit">디자인기획사<span class="arrow"></span></p>
+							<ul class="sub">
+								<li>
+									<span>디자인기획사, 웹에이전시, SI기업까지<br/>디자인수정은 맡기고 고객확보에 집중하세요</span>
+									<p>청구비용은 적은데 신경은 많이 쓰이는 수정작업! 특히 단순하고<br/>반복적인 수정작업은 업무 스트레스도 많고 파일관리도 어렵습니다.<br/>이제 수정작업은 맡기시고 고객확보에 전념하세요.</p>
+									<!-- <a href="#" class="btn_more">더보기&nbsp&nbsp+</a> -->
+									<img src="img/ico_4-1.png">
+								</li>
+							</ul>
+						</li>
+						<li class="cont cont2 g2">
+							<p class="service_tit">프리랜서 디자이너<span class="arrow"></span></p>
+							<ul class="sub">
+								<li>
+									<span>내 디자인작업을 도와줄 디자이너비서를<br/>고용하세요</span>
+									<p>혼자서 모든 일을 처리해야만 하는 프리랜서에게 수정작업은 시간과<br/>비용을 빼앗는 골치 아픈 일이지요.<br/>수정작업은 ‘부탁해! 수정대리’에 맡기고 기획과 디자인 작업, 고객미팅,<br/>고객관리에 집중하세요.<br/>“부탁해! 수정대리”는 보조디자이너 역할을 톡톡히 해내는<br/>디자이너비서 서비스입니다.</p>
+									<!-- <a href="#" class="btn_more">더보기&nbsp&nbsp+</a> -->
+									<img src="img/ico_4-2.png">
+								</li>
+							</ul>
+						</li>
+						<li class="cont cont3 g3">
+							<p class="service_tit">프랜차이즈 기업<span class="arrow"></span></p>
+							<ul class="sub">
+								<li>
+									<span>가맹점에 모두 똑같은 홍보물이 아닌<br/>딱 맞는 맞춤형디자인을 제공하세요</span>
+									<p>가맹점에 가장 중요한 마케팅 수단인 매장홍보 배너, 메뉴안내POP,<br/>이벤트홍보 현수막 등의 인쇄물! 상권특성과 고객성향에 딱 맞는<br/>내용으로 제공되어야 합니다. 이제는 모든 가맹점에 똑같은 홍보물을<br/>일제히 제공하지 말고 각 지점에 딱 맞는 맞춤형으로 제공하세요.</p>
+									<!-- <a href="#" class="btn_more">더보기&nbsp&nbsp+</a> -->
+									<img src="img/ico_4-3.png">
+								</li>
+							</ul>
+						</li>
+						<li class="cont cont4 g4">
+							<p class="service_tit">디지털디스플레이<span class="arrow"></span></p>
+							<ul class="sub">
+								<li>
+									<span>디지털디스플레이, 디지털사이니지 시장에서<br/>효과적인 컨텐츠관리로 경쟁력을 확보하세요</span>
+									<p>점점 더 빠르고 다양한 컨텐츠를 필요로 하고 있는 디지털디스플레이 시장!<br/>컨텐츠 관리 쉽지 않으시죠? 치열한 환경에서 효과적인 컨텐츠<br/>관리는 강력한 경쟁력입니다.<br/>체계적인 컨텐츠 관리와 함께 타겟에 맞는 디자인 수정 및 관리<br/>서비스를 제공해보세요.</p>
+									<!-- <a href="#" class="btn_more">더보기&nbsp&nbsp+</a> -->
+									<img src="img/ico_4-4.png">
+								</li>
+							</ul>
+						</li>
+						<li class="cont cont5 g5">
+							<p class="service_tit">광고대행사<span class="arrow"></span></p>
+							<ul class="sub">
+								<li>
+									<span>수정서비스는 세밀하고 정교한 타겟마케팅을<br/>가능하게 하는 강력한 무기입니다</span>
+									<p>점점 세분화, 개인화, 정교화되고 있는 광고 커뮤니케이션!<br/>초정밀 마케팅, 마이크로밸류 마케팅 같은 보다 정교하고 세밀한<br/>형태의 마케팅에 강력한 파트너가 되어 드립니다.</p>
+									<!-- <a href="#" class="btn_more">더보기&nbsp&nbsp+</a> -->
+									<img src="img/ico_4-5.png">
+								</li>
+							</ul>
+						</li>
+						<li class="cont cont6 g6">
+							<p class="service_tit">인쇄소<span class="arrow"></span></p>
+							<ul class="sub">
+								<li>
+									<span>고객이 더 저렴한 경쟁사로 떠날까 걱정되시나요?<br/>수정서비스가 고객충성도를 높여드립니다</span>
+									<p>어렵게 확보한 고객이 더 저렴한 경쟁사로 떠날까 걱정이시죠?<br/>“부탁해! 수정대리”를 통해 고객에게 받은 디자인파일을 관리해 보세요.<br/>고객의 이탈율은 확실히 줄어들고 충성도를 높일 수 있습니다.</p>
+									<!-- <a href="#" class="btn_more">더보기&nbsp&nbsp+</a> -->
+									<img src="img/ico_4-6.png">
+								</li>
+							</ul>
+						</li>
+						<li class="cont cont7 g7">
+							<p class="service_tit">디자인상품 판매기업<span class="arrow"></span></p>
+							<ul class="sub">
+								<li>
+									<span>판촉물, 인쇄물, 캐릭터상품에는<br/>고객맞춤형 디자인서비스가 필수입니다</span>
+									<p>홍보물, 판촉물, 캐릭터상품 등은 고객이 원하는 디자인을<br/>제공해야하는 대표적인 아이템이지만 고객의 입맛에 딱 맞는 디자인<br/>작업을 원활하게 진행하기는 어려우시죠?<br/>“부탁해! 수정대리”를 활용해보세요. 더욱 만족스러운 디자인서비스<br/>제공이 가능합니다.</p>
+									<!-- <a href="#" class="btn_more">더보기&nbsp&nbsp+</a> -->
+									<img src="img/ico_4-7.png">
+								</li>
+							</ul>
+						</li>
+						<!-- <li class="cont cont8 g8">
+							<p class="service_tit">리셀러-디자인관리자<span class="arrow"></span></p>
+							<ul>
+								<li>
+									<h3>리셀러-디자인관리자</h3>
+									<span>지역상점의 디자인 관리자가 되어보세요</span>
+									<p>전국 각 지역 수많은 개별 매장들에 필요한<br/>인쇄물들을 관리하고 제작을 지원하는 리셀러가 되어보세요<br/>다양한 수익창출의 기회를 잡을 수 있습니다.</p>
+									<a href="#" class="btn_more">더보기&nbsp&nbsp+</a>
+									<img src="img/ico_4-8.png">
+								</li>
+							</ul>
+						</li> -->
+					</ul>
+				</div>
+		</div>
+		<!-- //section4 -->
+		<div class="section section5" id="slide5">
+			<div class="content">
+				<h2 class="title">IT기반의 안정적인 디자인 수정서비스 제공</h2>
+				<span>"부탁해! 수정대리"는 단순 인력제공 서비스가 아닙니다.<br/>IT기술과 관리노하우를 집약한 고도화 관리시스템을 통해 안정적인 서비스가 제공됩니다.</span>
+				<div>
+					<div class="cont cont1">
+						<p class="img"><img src="img/ico_5-1.png"></p>
+						<h3>간단하고 반복적인 성향의<span class="enter">대량수정작업</span></h3>
+						<span>명함, 쿠폰, 포스터, 메뉴판, 판촉물, 시즌홍보물</span>
+						<p>완성된 디자인을 와이즈데스크에 등록 후<br/>필요할 때 요청만 하세요!</p>
+					</div>
+					<div class="cont cont2">
+						<p class="img"><img src="img/ico_5-2.png"></p>
+						<h3>1회성 수정작업이<span class="enter">필요한 경우</span></h3>
+						<span>약도, 아이콘, 이미지 보정, 합성, 누끼, 리사이징</span>
+						<p>필요한 내용과 파일을 올려주세요 휴대폰으로<br/>찍어서 보내지만 하면 됩니다.</p>
+					</div>
+					<div class="cont cont3">
+						<p class="img"><img src="img/ico_5-3.png"></p>
+						<h3>수정할 상품종류와<span class="enter">작업건수가 많은 경우</span></h3>
+						<span>고객 맞춤형 상품서비스 출시 및 <strong class="enter">서비스 개인화 상품 런칭 가능</strong></span>
+						<p>사용하는 귀사의 고객주문시스템과<br/>연동하면 주문 즉시 수정요청처리 가능합니다.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- //section5 -->
+		<div class="section section6" id="slide6">
+			<div class="content">
+				<h2 class="title"><span>디</span><span>자</span><span>인</span><span>전</span><span>문</span> 아웃소싱 서비스 와이즈데스크</h2>
+				<span>와이즈데스크는 서비스형 소프트웨어(SaaS)로서 체계적인 디자인관리가 가능한 관리시스템과<br/>디자인수정 서비스 "부탁해 수정대리"를 비롯한 다양한 디자인서비스를 제공하는<br/><strong>통합 디자인 매니지먼트 시스템</strong>입니다</span>
+				<span class="m_span">"부탁해! 수정대리"는 디자인전문 아웃소싱 서비스<br/>와이즈데스크를 통해 제공됩니다.</span>
+				<img src="img/ico_6_bg2.png">
+				<div>
+					<div class="cont cont1">
+						<p class="img"><img src="img/ico_6-1.png"></p>
+						<h3>웹서비스 & 모바일서비스</h3>
+						<p>웹과 모바일로 서비스를 제공하는 클라우드<br/>서비스로 편리한 커뮤니케이션과 빠른<br/>피드백을 받을 수 있습니다.</p>
+					</div>
+					<div class="cont cont2">
+						<p class="img"><img src="img/ico_6-2.png"></p>
+						<h3>태그검색&썸네일 시안관리</h3>
+						<p>태그검색기능과 썸네일 시안관리로<br/>작업시안을 쉽게 찾고, SNS로 디자인을<br/>손쉽게 공유할 수 있습니다.</p>
+					</div>
+					<div class="cont cont3">
+						<p class="img"><img src="img/ico_6-3.png"></p>
+						<h3>쉽고 편리한 디자인 관리</h3>
+						<p>간편한 디자인 등록, 삭제, 수정이<br/>제공되며 정렬, 고정, 숨기기 등 원하는<br/>스타일로 관리할 수 있습니다.</p>
+					</div>
+					<div class="cont cont4">
+						<p class="img"><img src="img/ico_6-4.png"></p>
+						<h3>인쇄제작까지 원스톱 서비스</h3>
+						<p>디자인 수정은 물론 원하실 경우<br/>인쇄물 제작, 검수, 배송까지<br/>원스톱으로 이용하실 수 있습니다.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- //section6 -->
+		<div class="section section7" id="slide7">
+			<div class="content">
+				<h2 class="title">도입문의<span>효과적인 디자인 관리를 위해 와이즈데스크가 도와드리겠습니다.</span></h2>
+				<ul>
+					<li><input type="text" placeholder="회사명"></li>
+					<li><input type="text" placeholder="이름"></li>
+					<li><input type="text" placeholder="전화번호"></li>
+					<li><input type="text" placeholder="이메일"></li>
+					<li><textarea placeholder="문의내용을 입력해주세요"></textarea></li>
+				</ul>
+				<a href="#">메시지 보내기</a>
+			</div>
+		</div>
+		<!-- //section7 -->
+		<div class="section section8" id="slide8">
+			<div class="content">
+				<h2 class="title">우리의 미션은<br/><strong>IT기술을 통해 디자인과 비즈니스를 연결하여<br/>고객 비즈니스의 가치를 높이는 것</strong>입니다</h2>
+				<img src="img/ico_8.png">
+				<p>"와이즈데스크" 시작 그리고...</p>
+				<span>2015년 클라우드(SaaS:서비스형 소프트웨어)<br/>
+				맞춤형 인쇄서비스로 출발한 와이즈데스크!<br/>
+				이후 디자인파일 관리, 인쇄물 제작 검수 배송,<br/>
+				디자인수정 서비스를 확장하였고<br/>
+				다양한 경험을 바탕으로 2,000여 기업고객에게<br/>
+				효과적인 디자인관리가 가능한 서비스를 제공하고 있습니다.
+				</span>
+			</div>
+		</div>
+		<!-- //section8 -->
+		<div class="section section9" id="slide9">
+			<div class="content">
+				<h2 class="title">와이즈데스크, 디자인수정에 주목하다</h2>
+				<p>IT기술의 발전과 비즈니스 환경의 변화로 인해
+					디자인의 영향력은 커지고 디자이너의 역할도 중요해졌습니다.<br/><br/>
+					하지만 디자이너는 단순한 디자인수정 작업의 증가로 인해
+					중요한 업무에 집중하지 못하고 있습니다.<br/><br/>
+					‘부탁해! 수정대리’는 이러한 문제점을 해결하기 위해 출시된
+					디자인수정 전문서비스로서 업무에 직접적인 도움을 주고
+					효과적인 디자인 관리를 가능하게 합니다.</p>
+				<img src="img/ico_9.png">
+			</div>
+		</div>
+		<!-- //section9 -->
+		<div class="section section10" id="slide10">
+			<div class="content">
+				<h2 class="title">혁신적인 IT기술로 고객의 비즈니스 가치를 높이는 <span class="enter">새로운 디자인서비스를 제공하겠습니다.</span></h2>
+				<span>“부탁해! 수정대리”는 단순한 수정 용역서비스가 아닙니다.<br/>기술 기반의 비즈니스 디자인 매니지먼트 시스템으로서<br/>대용량 디자인파일의 처리, 원본파일의 보관·검색 및 접근방법,<br/>디자인 업무 스케줄링, 작업물에 대한 히스토리 관리,<br/>의뢰인과 작업자 관리자 간의 원활한 커뮤니케이션 등을 실현합니다.
+				</span>
+				<img src="img/ico_10.png">
+				<p>와이즈데스크의 진정한 시작은 지금부터입니다!</p>
+				<span class="b_span">와이즈데스크는 자체 개발한 고도화 관리시스템을 기반으로<br/>
+				AI를 활용한 작업 자동화처리 프로세스, 챗봇 개발,<br/>
+				빅데이터를 활용한 검색과 추천시스템 등<br/>
+				발 빠르게 새로운 혁신을 준비하고 있습니다.<br/><br/>
+				디자인과 비즈니스를 연결하여<br/>
+				고객의 성공적인 비즈니스를 위한<br/>
+				혁신적인 서비스를 지속하고 새로운 가치를 만들어내는 것!<br/>
+				바로 와이즈데스크가 나아가고 있는 길입니다.
+				</span>
+			</div>
+		</div>
+		<!-- //section10 -->
+		
+		<div id="footer">
+			<div class="content">
+				<h3>ⓒ2009-2019 (주)티피앤글로벌</h3>
+				<p class="info"><span class="nopadding">서울본사: 서울시 마포구 동교동 185-17 3층 </span><span>1599-2344</span><span class="noborder">ask@wisedesk.net</span><br/><span class="nopadding">을지로센터: 서울시 중구 마른내로 72 인현상가 427호</span><span class="noborder">070-4010-7292</span><br/><span class="nopadding">사업자등록번호: 105-87-34989</span><span>통신판매업신고번호: 2009-서울마포-1136호</span><span class="noborder">개인정보관리자: 이호성</span>
+				</p>
+				<p class="m_info"><span class="nopadding noborder">서울본사: 서울시 마포구 동교동 185-17 3층 </span><br/><span class="nopadding" >1599-2344</span><span class="noborder">ask@wisedesk.net</span><br/><span class="nopadding">을지로센터: 서울시 중구 마른내로 72 인현상가 427호</span><span class="noborder">070-4010-7292</span><br/><span class="nopadding noborder">사업자등록번호: 105-87-34989</span><span class="nopadding noborder">통신판매업신고번호: 2009-서울마포-1136호</span><br/><span class="noborder nopadding">개인정보관리자: 이호성</span></p>
+				<ul>
+					<li><a href="#" class="facebook"><img src="img/ico_facebook.png"></a></li>
+					<li><a href="#" class="instagram"><img src="img/ico_instagram.png"></a></li>
+					<li><a href="#" class="blog"><img src="img/ico_blog.png"></a></li>
+					<li><a href="#" class="youtube"><img src="img/ico_youtube.png"></a></li>
+				</ul>
+			</div>
+		</div>
+
+		</div>
+	<!-- // -->
+		<div class="video_pop">
+		<div class="inner_wrap">
+			<iframe id="player" width="560" height="315" src="https://www.youtube.com/embed/rJr-IsEU6Ak?version-2&amp;autoplay=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+			<a href="#" class="pop_close" onclick="popClose();"></a>
+		</div>
+	</div>
+</div>
+
+<script>
+$(document).ready(function(){
+	$('.slick_wrap').slick({
+	  dots:true,
+	  autoplay: true,
+	  autoplaySpeed: 5000,
+	});
+});
+$(document).ready(function(){
+	$('.slick_wrap2').slick({
+	  arrows:true,
+	  autoplay: true,
+	  autoplaySpeed: 5000,
+	});
+});
+</script>
+
+<script type="text/javascript">
+$('.slick-Nav').click(function() {
+	   var slideNo = $(this).index();
+	   $('.slick_wrap2').slick('slickGoTo', slideNo);
+   	   var tab_id = $(this).attr('id');
+	   $('.slick-Nav').removeClass("active");
+	   $("#"+tab_id).addClass("active");
+	 });
+	 
+
+$('.slick_wrap2').on('afterChange', function(event, slick, currentSlide) {
+	var slideAct = document.getElementsByClassName("slick-current")[1].id;
+    $('.slick-Nav').removeClass("active");
+    $("."+slideAct).addClass("active");
+});
+</script>
+
+
+<script type="text/javascript">
+$(function(){
+var embed = $('#player'); 
+var close_btn = $('.pop_close');
+$('#quick_request .video').click(function() {
+	$('.video_pop').addClass('show');
+	$('.inner_wrap').append(embed);
+	$('.inner_wrap').append(close_btn);
+	});
+});
+</script>
+<script type="text/javascript">
+function popClose() {
+	$('.video_pop').removeClass('show');
+    $('.inner_wrap').empty();
+}
+</script>
+
+<script src="js/slick.min.js"></script>
+</body>
+</html>

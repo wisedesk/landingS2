@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<title>Wise Desk - print</title>
+
+<link rel="stylesheet" type="text/css" href="css/common.css"/>
+<link rel="stylesheet" type="text/css" href="css/style_print.css"/>
+<link rel="stylesheet" type="text/css" href="css/slick.css"/>
+<link rel="stylesheet" type="text/css" href="css/slick-theme.css"/>
+<link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:300,400,500,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,500&display=swap" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+	window.onload = function(){
+		setTimeout(function(){
+			scrollTo(0,0);
+		},100);
+	}
+
+	$('.m-menu-icon').click(function() {
+		$('.m_menu_in').toggleClass('show');
+		$('.m-menu-icon').toggleClass('active');
+		$('.layer').toggleClass('active');
+	});
+
+	$('.logo').click(function(){
+		$('html, body').animate({scrollTop : 0},1000);
+	});
+
+	$('.totop').click(function(){
+		$('html, body').animate({scrollTop : 0},1000);
+	});
+
+	$( "a" ).click(function( event ) {
+		event.preventDefault();
+		});
+
+	
+});
+</script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+		$( "a" ).click(function( event ) {
+		event.preventDefault();
+		});
+	});
+</script>
+</head>
+<body>
+<div id="wrap" class="wrap">
+	<div id="menu">
+		<div class="inner_menu">
+			<a href="#" class="logo"><img src="img/logo.png" alt="와이즈데스크 로고" /></a>
+			<ul>
+				<li><a href="#" class="intro">소개</a></li>
+				<li><a href="#slide4" class="scrollClick">서비스활용</a></li>
+				<li><a href="#slide8" class="scrollClick">회사소개</a></li>
+				<li><a href="#slide7" class="scrollClick">도입문의</a></li>
+				<li><a href="#" onClick="location.href='sub_price.html'">요금안내</a></li>
+				<li><a href="#" onClick="location.href='sub_print.html'">인쇄배송서비스</a></li>
+			</ul>
+			<a href="#" class="login">로그인</a>
+		</div>
+	</div>
+
+	<!--//menu-->
+
+	<div id="m_menu">
+		<a href="#" class="m-menu-icon"></a>
+		<a href="#" class="m_logo"><img src="img/m_logo.png" alt="와이즈데스크 로고" /></a>
+		<a href="#" class="m_login"><img src="img/m_ico_login.png"></a>
+		<div class="m_menu_in">
+			<ul>
+				<li><a href="#" class="intro">소개</a></li>
+				<li><a href="#slide4" class="scrollClick">서비스활용</a></li>
+				<li><a href="#slide8" class="scrollClick">회사소개</a></li>
+				<li><a href="#slide7" class="scrollClick">도입문의</a></li>
+				<li><a href="#" onClick="location.href='sub_price.html'">요금안내</a></li>
+				<li><a href="#" onClick="location.href='sub_print.html'">인쇄배송서비스</a></li>
+			</ul>
+			<a href="#" class="ask"><span>도입문의</span></a>
+			<!-- <a href="#" class="join"><span>회원가입</span></a> -->
+		</div>
+	</div>
+	<div class="layer"></div>
+	
+
+	<!--//m_menu-->
+
+	<div class="content_wrap">	
+		<div class="section section1" id="slide1">
+			<div class="content">
+				<div class="slick_wrap">
+					<div class="slick_sl1">
+						<div class="text_box">
+							<span class="t_tit">와이즈데스크 인쇄제작/배송대행 서비스!</span>
+							<h2 class="title"><strong>2000여 고객과<span class="enter"></span> 연15,000건 처리로</strong><br/>증명하고 있습니다.</h2>
+							<span class="b_tit">제작이 필요한 고객을 위해 와이즈데스크가 제공하는<br/>인쇄제작/배송대행 서비스입니다.</span>
+							<ul>
+								<li><a href="#" class="ask">도입문의</a></li>
+								<li><a href="#" class="ask_cop">제휴문의</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="slick_sl2">
+						<div class="text_box">
+							<h2 class="title">와이즈데스크<br/><strong>인쇄물전문 배송 서비스를<span class="enter"></span> 소개합니다</strong></h2>
+							<span class="b_tit"><strong>분류배송</strong> : 대량 제작물을 원하는 배송지별, 수량별로 분류 포장하여 배송<br/><strong>합배송</strong> : 제작공정 및 일정이 다른 제작물을 취합하여 한번에 포장하여 배송<br/><strong>국제배송</strong> : 해운, 항공을 통한 국제배송 서비스</span>
+							<ul>
+								<li><a href="#" class="ask">도입문의</a></li>
+								<li><a href="#" class="ask_cop">제휴문의</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- //section1 -->
+		<div class="section section2" id="slide2">
+			<div class="content">
+				<h2 class="title">인쇄물 제작 배송관리<strong>결코</strong>쉽지 않아요!</h2>
+				<span>사고도 잦고 스트레스도 많습니다</span>
+				<img src="img/p_ico_2.png" class="img1">
+				<img src="img/m_p_ico_2.png" class="img2">
+				<img src="img/m_p_ico_2-2.png" class="img3">
+			</div>
+		</div>
+		<!-- //section2 -->
+		<div class="section section3" id="slide3">
+			<div class="content">
+				<h2 class="title">와이즈데스크 제작서비스는 직영공장을 운영하지 않습니다</h2>
+				<span>와이즈데스크는 제작,공정 관리에 역량을 집중하여 더욱 공정하고 정확한 서비스를 제공합니다.<br/>동일품목별 3개 이상, 총 30여 개의 제작사를 통해  인쇄물 제작, 검수 후 배송됩니다.</span>
+				<div class="cont_wrap">
+					<div class="cont cont1">
+						<div class="float_l"><img src="img/p_ico_3-1.png"></div>
+						<div class="m_float_l"><img src="img/m_p_ico_3-1.png"></div>
+						<div class="float_l float_l2">전용출고<br/>센터운영</div>
+						<div class="float_l float_l3">
+							<h3>대형물류센터와 동일한 수준의 검수/배송시스템</h3>
+							<p>전담인력으로 구성된 전용 출고센터를 운영하고 있으며 대형물류센터와 동일한 수준의<br/>검수/배송 시스템을 구축하여 체계적이고 효율적인 배송서비스를 제공합니다.</p>
+						</div>
+					</div>
+					<div class="cont cont2">
+						<div class="float_l"><img src="img/p_ico_3-2.png"></div>
+						<div class="m_float_l"><img src="img/m_p_ico_3-2.png"></div>
+						<div class="float_l float_l2">통합관제<br/>모니터링</div>
+						<div class="float_l float_l3">
+							<h3>여러 인쇄소를 통해 제작중인 인쇄물의 통합관리</h3>
+							<p>종류에 따라 서로 다른 인쇄소에서 제작되는 인쇄물에 대해 모든 제작공정을 통합적으로<br/>한번에 관리할 수 있습니다.</p>
+						</div>
+					</div>
+					<div class="cont cont3">
+						<div class="float_l"><img src="img/p_ico_3-3.png"></div>
+						<div class="m_float_l"><img src="img/m_p_ico_3-3.png"></div>
+						<div class="float_l float_l2">묶음배송<br/>분류배송<br/>국제배송</div>
+						<div class="float_l float_l3">
+							<h3>다양한 배송서비스 제공</h3>
+							<p><strong>합배송</strong> : 제작공정 및 일정이 다른 제작물을 취합하여 한번에 포장하여 발송<br/><strong>분류배송</strong> : 대량 제작물을 원하는 배송지별, 수량별로 분류 포장하여 배송<br/><strong>국제배송</strong> : 해운, 항공을 통한 전세계 어디나 발송 가능한 국제배송서비스로 관세사를 통한<br/>정식 수출 서비스를 제공 가능</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- //section3 -->
+		<div class="section section10" id="slide10">
+			<div class="content">
+				<h2 class="title">혁신적인 IT기술로 더욱 체계화된<br/>인쇄물 제작 배송 서비스, 경험해보세요!</h2>
+				<span>와이즈데스크는 인쇄물 제작 및 공정 관리에 역량을 집중하여<br/>더욱 공정하고 정확한 서비스를 제공이 가능합니다.<br/>동일품목별 3개 이상, 총 30여 개의 제작사를 통해<br/>인쇄물을 제작하여 검수 후 포장하여 배송됩니다.</span>
+				<img src="img/p_ico_4.png">
+				<p>인쇄물 제작ㆍ배송관리는<br/>오케스트라의 지휘자와 같습니다</p>
+				<span>인쇄물은 여러 단계의 공정과 여러 제작사를 통해<br/>제작되기 때문에 제작 품목은 각 단계마다<br/>최선의 능력을 발휘하고 효과적으로 처리 될 수 있도록<br/>조화와 협력을 만드는 것이 중요합니다.<br/>그것은 마치 오케스트라의 지휘자와 같다고 할 수 있습니다.<br/><br/>
+				와이즈데스크 인쇄 제작 서비스는<br/>IT기술을 활용하여 체계적이고 효과적으로 처리되고<br/>커뮤니케이션을 가능하도록 합니다.</span>
+				<p class="last">지금 바로 경험해 보세요!</p>
+			</div>
+		</div>
+		<!-- //section10 -->
+		
+		<div id="footer">
+			<div class="content">
+				<h3>ⓒ2009-2019 (주)티피앤글로벌</h3>
+				<p class="info"><span class="nopadding">서울본사: 서울시 마포구 동교동 185-17 3층 </span><span>1599-2344</span><span class="noborder">ask@wisedesk.net</span><br/><span class="nopadding">을지로센터: 서울시 중구 마른내로 72 인현상가 427호</span><span class="noborder">070-4010-7292</span><br/><span class="nopadding">사업자등록번호: 105-87-34989</span><span>통신판매업신고번호: 2009-서울마포-1136호</span><span class="noborder">개인정보관리자: 이호성</span>
+				</p>
+				<p class="m_info"><span class="nopadding noborder">서울본사: 서울시 마포구 동교동 185-17 3층 </span><br/><span class="nopadding" >1599-2344</span><span class="noborder">ask@wisedesk.net</span><br/><span class="nopadding">을지로센터: 서울시 중구 마른내로 72 인현상가 427호</span><span class="noborder">070-4010-7292</span><br/><span class="nopadding noborder">사업자등록번호: 105-87-34989</span><span class="nopadding noborder">통신판매업신고번호: 2009-서울마포-1136호</span><br/><span class="noborder nopadding">개인정보관리자: 이호성</span></p>
+				<ul>
+					<li><a href="#" class="facebook"><img src="img/ico_facebook.png"></a></li>
+					<li><a href="#" class="instagram"><img src="img/ico_instagram.png"></a></li>
+					<li><a href="#" class="blog"><img src="img/ico_blog.png"></a></li>
+					<li><a href="#" class="youtube"><img src="img/ico_youtube.png"></a></li>
+				</ul>
+			</div>
+		</div>
+
+		</div>
+	<!-- // -->
+</div>
+
+<script>
+$(document).ready(function(){
+	$('.slick_wrap').slick({
+	  dots:true,
+	  autoplay: true,
+	  autoplaySpeed: 5000,
+	});
+});
+$(document).ready(function(){
+	$('.slick_wrap2').slick({
+	  arrows:true,
+	  autoplay: true,
+	  autoplaySpeed: 5000,
+	});
+});
+</script>
+<script src="js/slick.min.js"></script>
+</body>
+</html>
