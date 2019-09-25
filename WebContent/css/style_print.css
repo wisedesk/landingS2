@@ -18,7 +18,7 @@ body {font-family:'Noto Sans KR', sans-serif;font-size:18px;letter-spacing:-1px;
 #menu .inner_menu ul:after{display:block;content:"";clear:both;}
 #menu .inner_menu ul li{float:left;padding:0 30px;height:80px;line-height:80px;}
 #menu .inner_menu ul li:nth-of-type(4){background:url(../img/ico_lightbulb.png) no-repeat 92px 17px;}
-#menu .inner_menu .login{float:right;width:111px;height:32px;line-height:32px;border-radius:20px;background:#2ca9e2 url(../img/ico_login.png) no-repeat 25px 8px;color:#fff;text-align:center;font-size:15px;margin-top:24px;box-sizing:border-box;padding-left:18px;}
+#menu .inner_menu .login{float:right;width:111px;height:32px;line-height:32px;border-radius:20px;background:#2ca9e2 url(../img/ico_login.png) no-repeat 25px 8px;color:#fff;text-align:center;font-size:15px;margin-top:24px;box-sizing:border-box;padding-left:18px;display: none;}
 #menu .inner_menu ul li a{display:block;height:80px;line-height:80px;}
 
 /* slide1 */
@@ -198,6 +198,7 @@ body {font-family:'Noto Sans KR', sans-serif;font-size:18px;letter-spacing:-1px;
 #slide3 .content > span{font-size:15px;}
 #slide3 .content > span strong{font-size:16px;}
 #slide3 .content .cont_wrap .cont .m_float_l img{width:194px;}
+#slide3 .content .cont_wrap .cont3 .m_float_l img{width:310px;}
 #slide3 .content .cont_wrap .cont .float_l2 img{width:auto;}
 #slide3 .content .cont_wrap .cont .float_l h3{font-size:22px;}
 #slide3 .content .cont_wrap .cont .float_l p{font-size:17px;}
