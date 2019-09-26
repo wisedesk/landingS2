@@ -37,17 +37,17 @@ $(document).ready(function(){
 		$('html, body').animate({scrollTop : 0},1000);
 	});
 	
-	$( "a" ).click(function( event ) {
-		event.preventDefault();
-		});
+	//$( "a" ).click(function( event ) {
+	//	event.preventDefault();
+	//	});
 });
 </script>
 <script>
 jQuery(document).ready(function($) {
-	$(".scrollClick").click(function(event){            
-	event.preventDefault();
-	$('html,body').animate({scrollTop:$(this.hash).offset().top - 86}, 500);
-	});
+	//$(".scrollClick").click(function(event){            
+	//event.preventDefault();
+	//$('html,body').animate({scrollTop:$(this.hash).offset().top - 86}, 500);
+	//});
 });
 </script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
@@ -56,14 +56,14 @@ jQuery(document).ready(function($) {
 <div id="wrap" class="wrap">
 	<div id="menu">
 		<div class="inner_menu">
-			<a href="#" class="logo"><img src="img/logo.png" alt="와이즈데스크 로고" /></a>
+			<a href="index.html" class="logo"><img src="img/logo.png" alt="와이즈데스크 로고" /></a>
 			<ul>
-				<li><a href="#" class="intro">소개</a></li>
-				<li><a href="#slide4" class="scrollClick">서비스활용</a></li>
-				<li><a href="#slide8" class="scrollClick">회사소개</a></li>
-				<li><a href="#slide7" class="scrollClick">도입문의</a></li>
-				<li><a href="#" onClick="location.href='sub_price.html'">요금안내</a></li>
-				<li><a href="#" onClick="location.href='sub_print.html'">인쇄배송서비스</a></li>
+				<li><a href="index.html" class="intro">소개</a></li>
+				<li><a href="index.html#slide4" class="scrollClick">서비스활용</a></li>
+				<li><a href="index.html#slide8" class="scrollClick">회사소개</a></li>
+				<li><a href="index.html#slide7" class="scrollClick">도입문의</a></li>
+				<li><a href="sub_price.html">요금안내</a></li>
+				<li><a href="sub_print.html">인쇄배송서비스</a></li>
 			</ul>
 			<a href="#" class="login">로그인</a>
 		</div>
@@ -77,12 +77,12 @@ jQuery(document).ready(function($) {
 		<a href="#" class="m_login"><img src="img/m_ico_login.png"></a>
 		<div class="m_menu_in">
 			<ul>
-				<li><a href="#" class="intro">소개</a></li>
-				<li><a href="#slide4" class="scrollClick">서비스활용</a></li>
-				<li><a href="#slide8" class="scrollClick">회사소개</a></li>
-				<li><a href="#slide7" class="scrollClick">도입문의</a></li>
-				<li><a href="#" onClick="location.href='sub_price.html'">요금안내</a></li>
-				<li><a href="#" onClick="location.href='sub_print.html'">인쇄배송서비스</a></li>
+				<li><a href="index.html" class="intro">소개</a></li>
+				<li><a href="index.html#slide4" class="scrollClick">서비스활용</a></li>
+				<li><a href="index.html#slide8" class="scrollClick">회사소개</a></li>
+				<li><a href="index.html#slide7" class="scrollClick">도입문의</a></li>
+				<li><a href="sub_price.html">요금안내</a></li>
+				<li><a href="sub_print.html">인쇄배송서비스</a></li>
 			</ul>
 			<a href="#" class="ask"><span>도입문의</span></a>
 			<!-- <a href="#" class="join"><span>회원가입</span></a> -->
@@ -94,7 +94,7 @@ jQuery(document).ready(function($) {
 	<!--//m_menu-->
 	
 	<div class="content_wrap">	
-		<a href="#" onClick="location.href='index.html'" class="tohome"></a>
+		<a href="index.html" class="tohome"></a>
 		<div class="section section1" id="slide1">
 			<div class="content">
 				<h2 class="title">서비스 규모에 맞춰서 선택할 수 있습니다</h2>
@@ -102,14 +102,21 @@ jQuery(document).ready(function($) {
 					<div class="free">
 						<h3>Free</h3>
 						<ul>
-							<li>A타입 디자인수정 5건 무료</li>
+                            <li>A타입 디자인수정 5건 무료</li>
 							<li>와이즈데스크 사용유저 1명</li>
 							<li>디자인파일 보관 20개</li>
 							<li>공용 도메인 사용</li>
 							<li>사용자 관리, 가맹점 관리에 제한</li>
 							<li>소규모 디자인기획사, 프리랜서 디자이너에 적합</li>
 						</ul>
-						<a href="#" class="join"><span>가입하기</span></a>
+						<a href="javascript:void(0);" onclick="joinWD();" class="join"><span>가입하기</span></a>
+						<script type="text/javascript">
+							function joinWD() {
+								if (confirm("도입문의를 하시면 안내해 드리겠습니다.\n도입문의 하시겠습니까?")) {
+									document.location.href = "index.html#slide7";
+								}
+							}
+						</script>
 					</div>
 					<div class="custom">
 						<h3>Custom</h3>
@@ -121,7 +128,7 @@ jQuery(document).ready(function($) {
 							<li>필요기능 지원</li>
 							<li>디자인활용이 많은 기업, 프랜차이즈,<br/>디자인 기획사 등에 적합</li>
 						</ul>
-						<a href="#" class="ask"><span>도입문의</span></a>
+						<a href="index.html#slide7" class="ask"><span>도입문의</span></a>
 					</div>
 				</div>
 			</div>
@@ -133,10 +140,10 @@ jQuery(document).ready(function($) {
 				<p class="info"><span class="nopadding">서울본사: 서울시 마포구 동교동 185-17 3층 </span><span>1599-2344</span><span class="noborder">ask@wisedesk.net</span><br/><span class="nopadding">을지로센터: 서울시 중구 마른내로 72 인현상가 427호</span><span class="noborder">070-4010-7292</span><br/><span class="nopadding">사업자등록번호: 105-87-34989</span><span>통신판매업신고번호: 2009-서울마포-1136호</span><span class="noborder">개인정보관리자: 이호성</span></p>
 				<p class="m_info"><span class="nopadding noborder">서울본사: 서울시 마포구 동교동 185-17 3층 </span><br/><span class="nopadding" >1599-2344</span><span class="noborder">ask@wisedesk.net</span><br/><span class="nopadding">을지로센터: 서울시 중구 마른내로 72 인현상가 427호</span><span class="noborder">070-4010-7292</span><br/><span class="nopadding noborder">사업자등록번호: 105-87-34989</span><span class="nopadding noborder">통신판매업신고번호: 2009-서울마포-1136호</span><br/><span class="noborder nopadding">개인정보관리자: 이호성</span></p>
 				<ul>
-					<li><a href="#" class="facebook"><img src="img/ico_facebook.png"></a></li>
-					<li><a href="#" class="instagram"><img src="img/ico_instagram.png"></a></li>
-					<li><a href="#" class="blog"><img src="img/ico_blog.png"></a></li>
-					<li><a href="#" class="youtube"><img src="img/ico_youtube.png"></a></li>
+					<li><a href="https://blog.naver.com/wisedesk" target="wnd_blog" class="blog"><img src="img/ico_blog.png"></a></li>
+					<li><a href="https://www.facebook.com/wisedesk" target="wnd_facebook" class="facebook"><img src="img/ico_facebook.png"></a></li>
+					<li><a href="https://www.instagram.com/wisedesk" target="wnd_instagram" class="instagram"><img src="img/ico_instagram.png"></a></li>
+					<li><a href="https://www.youtube.com/watch?v=rJr-IsEU6Ak" target="wnd_youtube" class="youtube"><img src="img/ico_youtube.png"></a></li>
 				</ul>
 			</div>
 		</div>
