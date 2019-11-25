@@ -1,6 +1,32 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+<!-- Global site tag (gtag.js) - Google Analytics TP -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-53227297-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-53227297-1');
+</script>
+
+<!-- Google Tag Manager TP -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MXLRKMV');</script>
+<!-- End Google Tag Manager -->
+
+<!-- Google Tag Manager dasolin-->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-58J8N25');</script>
+<!-- End Google Tag Manager -->
+
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
@@ -116,6 +142,16 @@ jQuery(document).ready(function($) {
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 </head>
 <body>
+<!-- Google Tag Manager (noscript) TP-->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MXLRKMV"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<!-- Google Tag Manager (noscript) Dasolin -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-58J8N25"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
 <div id="wrap" class="wrap">
 	<div class="shortcut">
 		<p><span>디자인전문 아웃소싱 서비스 와이즈데스크!</span><a href="190905_와이즈데스크S2_특징_v1.0.pdf" target="wnd_service">소개 자료 보기&nbsp;&nbsp;></a></p><span class="close"></span>
@@ -514,10 +550,35 @@ jQuery(document).ready(function($) {
 							$("#phone").focus();
 							return false;
 						}
-
+						/*
+						var isPhone = false;
+						var regExpPhone = /^(01[016789]{1}|02|0[3-9]{1}[0-9]{1}|0505)-?[0-9]{3,4}-?[0-9]{4}$/;
+						if (regExpPhone.test($("#phone").val())) {
+							isPhone = true;
+						}
+				
+						if (!isPhone) {
+							alert("전화번호를 정확하게 입력해 주세요.");
+							return false;
+						}
+						*/
 						if ($("#email").val() == "") {
 							alert("이메일을 입력해 주세요.");
 							$("#email").focus();
+							return false;
+						}
+
+						var regExpEmail = new RegExp("^[0-9A-Za-z]+(([\.\-_])[0-9A-Za-z]+)*@[0-9A-Za-z]+(([\.\-])[0-9A-Za-z-]+)*\.[A-Za-z]{2,4}$", "g");
+						var isEmail = $("#email").val().match(regExpEmail);
+						
+						if (!isEmail) {
+							alert("이메일을 정확하게 입력해 주세요.");
+							return false;
+						}
+
+						if ($("#inquiry_contents").val() == "") {
+							alert("문의내용을 입력해 주세요.");
+							$("#inquiry_contents").focus();
 							return false;
 						}
 
@@ -548,6 +609,12 @@ jQuery(document).ready(function($) {
 								rslt = eval("(" + rslt + ");");
 								if (rslt.is_success == "Y") {
 									alert("도입문의 내용을 담당자에게 전달하였습니다.");
+
+									$("#company_name").val("");
+									$("#customer_name").val("");
+									$("#phone").val("");
+									$("#email").val("");
+									$("#inquiry_contents").val("");
 								}
 								else {
 									alert("처리중 오류가 발생하였습니다.");
@@ -627,7 +694,7 @@ jQuery(document).ready(function($) {
 	<!-- // -->
 		<div class="video_pop">
 		<div class="inner_wrap">
-			<iframe id="player" width="560" height="315" src="https://www.youtube.com/embed/rJr-IsEU6Ak?version-2&amp;autoplay=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+			<iframe id="player" width="560" height="315" src="https://www.youtube.com/embed/rJr-IsEU6Ak?version-2&amp;autoplay=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 			<a href="#" class="pop_close" onclick="popClose();"></a>
 		</div>
 	</div>

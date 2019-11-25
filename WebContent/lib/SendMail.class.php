@@ -1,66 +1,86 @@
 <?php
+require_once $_SERVER['DOCUMENT_ROOT']."/lib/PHPMailer/src/PHPMailer.php";
+require_once $_SERVER['DOCUMENT_ROOT']."/lib/PHPMailer/src/SMTP.php";
+
 class SendMail {
-	/*
-	 * 메일발송을 위한 클래스
-	 * 외부 SMTP 서버를 지원합니다.
-	 * Author: Gwangsoo, Ryu (piver@ineemail.com)
-	 */
-	
-	var $UseSMTPServer = false;			// 다른 SMTP 서버를 이용할 경우
-	var $SMTPServer;						// SMTP 서버 도메인
-	var $SMTPPort = 25;					// Port
-	var $SMTPAuthUser;					// SMTP 인증 사용자
-	var $SMTPAuthPasswd;					// SMTP 인증 비밀번호
-	var $Socket;
-	
-	var $MailHeaderArray = array();		// 메일헤더를 담을 배열
-	
-	var $MailFrom;						// 보내는 사람
-	var $ReplyTo;							// 회신받을 주소 (기본적으로 보내는 메일주소가 된다)
-	var $MailTo = array();				// 받는 사람을 담을 배열
-	
-	var $Subject;							// 메일제목
-	var $MailBody;						// 메일본문
-	var $Charset = 'EUC-KR';				// 메일기본 캐릭터셋
-	var $Attach = array();				// 인코딩된 첨부파일
-	
-	var $Boundary;						// Bound
+	protected $mailer = null;
 
-	var $ReserveTime;					// 예약일시
+	// Instantiate a new PHPMailer 
+	function __construct($charset = 'utf-8') {
+		$this->mailer = new PHPMailer;
 
-	function __construct($charset = 'EUC-KR') {
-		$this->Boundary = md5(uniqid(microtime()));			// 바운드를 초기화한다
-		if(!empty($charset)) $this->Charset = $charset;		// 캐릭터셋
+		$this->mailer->CharSet = "UTF-8";
+		$this->mailer->Encoding = "base64";
+		$this->mailer->setLanguage("ko");
+
+		$this->setUseSmtpServer(true);
+		$this->setSmtpServer("smtp.daum.net");
+		$this->setSmtpPort(465);
+		$this->setSmtpUser("tpist");
+		$this->setSmtpPasswd("2qjsghkrdls");
+		$this->setSmtpAuth(true);
+		$this->setSmtpSecure("ssl");
+		$this->setIsHtml(true);
 	}
 
-	function convData($data) {
-		if ($this->Charset != "utf-8") {
-			$data = iconv("utf-8", $this->Charset, $data);
+	function setUseSmtpServer($is_use_smtp) {
+		if ($is_use_smtp) {
+			// Tell PHPMailer to use SMTP
+			$this->mailer->isSMTP();
 		}
-		return $data;
+		else {
+			$this->mailer->isMail();
+		}
+	}
+
+	function setSmtpServer($smtpServer) {
+		$this->mailer->Host = $smtpServer;
+	}
+
+	function setSmtpPort($smtpPort) {
+		$this->mailer->Port = $smtpPort; //25, 465 or 587
 	}
 	
-	function setFrom($email, $name = null) {
-		// 보내는 메일
-		$this->setReplyTo($email);
-		return $this->MailFrom = ($name) ? $this->convData($name) . ' <' . $email . '>' : $email;
+	function setSmtpUser($smtpUser) {
+		$this->mailer->Username = $smtpUser;
 	}
 	
-	function setReplyTo($email) {
-		// 회신주소 - 기본적으로 보내는 메일을 회신주소로 셋한다
-		return $this->ReplyTo = $email;
+	function setSmtpPasswd($smtpPasswd) {
+		$this->mailer->Password = $smtpPasswd;
 	}
-	
-	function setSubject($Subject) {
-		// 제목
-		return $this->Subject = $this->convData($Subject);
+
+	function setSmtpAuth($is_auth) {
+		$this->mailer->SMTPAuth = $is_auth;
 	}
-	
-	function addTo($email, $name = null) {
-		// 받는 메일을 추가한다
-		return $this->MailTo[$email] = ($name ? $this->convData($name) : $name);
+
+	function setSmtpSecure($smtpSecure) {
+		$this->mailer->SMTPSecure = $smtpSecure;
 	}
-	
+
+	function setIsHtml($isHTML) {
+		$this->mailer->isHTML($isHTML);
+	}
+
+	function setFrom($email, $name = "") {
+		$this->mailer->setFrom($email, $name);
+	}
+
+	function addTo($email, $name = "") {
+		$this->mailer->addAddress($email, $name);
+	}
+
+    function addCc($email, $name = "") {
+        $this->mailer->addCC($email, $name);
+    }
+
+    function addBcc($email, $name = "") {
+        $this->mailer->addBCC($email, $name);
+    }
+
+	function setSubject($subject) {
+		$this->mailer->Subject = $subject;
+	}
+
 	function addAttach($filename, $source) {
 		// 첨부파일을 추가한다
 		$fp = fopen($source, 'r');		// 소스파일을 연다
@@ -72,195 +92,130 @@ class SendMail {
 		}
 	}
 	
-	function setMailBody($body, $useHtml = true) {
-		if(!$useHtml) {		// 메일본문이 HTML 형식이 아니면 HTML 형식으로 바꾸어준다
-			$body = '
-				<html>
-					<head>
-						<meta http-equiv="Content-Type" content="text/html; charset=' . $this->Charset . '">
-						<style type="text/css">
-							BODY, TH, TD, DIV, SPAN, P, INPUT {
-								font-size:12px;
-								line-height:17px;
-							}
-							BODY, DIV { text-align:justify; }
-						</style>
-					</head>
-					
-					<body>
-						' . nl2br($body) . '
-					</body>
-				</html>
-			';
+	function setMailBody($body, $isUseHtml = true) { 
+		if ($isUseHtml) {
+			$this->mailer->Body = $body;
 		}
-		
-		$this->MailBody = $this->convData($body);		// 메일본문을 셋한다
-	}
-	
-	function AddBasicHeader() {
-		// 메일의 기본 헤더를 작성한다
-		$this->addHeader('From', $this->MailFrom);
-		$this->addHeader('User-Agent', 'Dabuilder Mail System');
-		$this->addHeader('X-Accept-Language', 'ko, en');
-		$this->addHeader('X-Sender', $this->ReplyTo);
-		$this->addHeader('X-Mailer', 'PHP');
-		$this->addHeader('X-Priority', 1);
-		$this->addHeader('Reply-to', $this->ReplyTo);
-		$this->addHeader('Return-Path', $this->ReplyTo);
-		
-		if(count($this->Attach) > 0) {		// 첨부파일이 있을 경우의 헤더
-			$this->addHeader('MIME-Version', '1.0');
-			$this->addHeader('Content-Type', 'Multipart/mixed; boundary = "' . $this->Boundary . '"');
-		} else {		// 첨부파일이 없는 일반 메일일 경우의 헤더
-			$this->addHeader('Content-Type', 'text/html; charset=' . $this->Charset);
-			$this->addHeader('Content-Transfer-Encoding', '8bit');
+		else {
+			$this->mailer->Body = strip_tags($body);
 		}
-	}
-	
-	function addHeader($Content, $Value) {
-		// 메일헤더의 내용을 추가한다
-		$this->MailHeaderArray[$Content] = $Value;
-	}
-	
-	function MailAttach() {
-		// 첨부파일이 있을 경우 메일본문에 첨부파일을 덧붙인다
-		$arrRet = array();
-		
-		if(count($this->Attach) > 0) {
-			foreach($this->Attach as $Filename => $fBody) {
-				$tmpAttach = "--" . $this->Boundary . "\r\n";
-				$tmpAttach .= "Content-Type: application/octet-stream\r\n";
-				$tmpAttach .= "Content-Transfer-Encoding: base64\r\n";
-				$tmpAttach .= "Content-Disposition: attachment; filename=\"" . $this->convData($Filename) . "\"\r\n\r\n";
-				$tmpAttach .= $this->encodingContents($fBody) . "\r\n\r\n";
-				
-				$arrRet[] = $tmpAttach;
-			}
-		}
-		
-		return implode('', $arrRet);
-	}
-	
-	function setUseSMTPServer($boolean = null) {
-		// 외부 SMTP 서버를 이용할 것인지를 셋한다
-		return (is_null($boolean)) ? $this->UseSMTPServer : $this->UseSMTPServer = $boolean;
-	}
-	
-	function setSMTPServer($smtpServer = null, $port = 25) {
-		// 외부 SMTP 서버를 이용할 경우 SMTP 서버를 설정한다
-		$this->SMTPPort = $port;
-		return (is_null($smtpServer)) ? $this->SMTPServer : $this->SMTPServer = $smtpServer;
-	}
-	
-	function setSMTPUser($User = null) {
-		// 외부 SMTP 서버를 이용할 경우 로그인 사용자를 설정한다
-		return (is_null($User)) ? $this->SMTPAuthUser : $this->SMTPAuthUser = $User;
-	}
-	
-	function setSMTPPasswd($Passwd = null) {
-		// 외부 SMTP 서버를 이용할 경우 로그인 비밀번호를 설정한다
-		return (is_null($Passwd)) ? $this->SMTPAuthPasswd : $this->SMTPAuthPasswd = $Passwd;
-	}
-	
-	function encodingContents($contets) {
-		// 메일본문을 인코딩하는 역할을 한다
-		return chunk_split(base64_encode($contets));
-	}
-	
-	function makeMailHeader() {
-		// 보낼 메일의 헤더를 작성한다
-		$header = "";
-		foreach($this->MailHeaderArray as $Key => $Val)
-			$header .= $Key . ": " . $Val . "\r\n";
-		
-		return $header . "\r\n";
+		$this->mailer->AltBody = strip_tags($body);
 	}
 
-	function setReserveTime($reserveTime) {
-		$this->ReserveTime = $reserveTime;
+	function setContents($mailContents, $isUseHtml = true) {
+		$this->setMailBody($this->getContents($mailContents), $isUseHtml);
+	}
+
+	function getContents($mailContents) {
+		$mailMessage = "";
+		$mailMessage .= "<body style=\"margin:0px 0px;\">";
+		$mailMessage .= "	<div style=\"width:100%; height:100%; background-color:#f1f1f1; padding:0px 0px;\">";
+		$mailMessage .= "		<div style=\"text-align:center;\">";
+		$mailMessage .= "			<div style=\"display:inline-block; margin:10px 10px;\">";
+		$mailMessage .= "				<div style=\"text-align:left; padding-top:10px;\">";
+		$mailMessage .= "					<img src=\"http://tp.wisedesk.net/images/wisedesk_h.png\" alt=\"WiseDesk\">";
+		$mailMessage .= "					<div style=\"width:100%; font-size:16px; color:#1c75bc; text-align:center; display:inline-block; padding-top:5px; float:right;\">".$mailContents["subject"]."</div>";
+		$mailMessage .= "				</div>";
+		$mailMessage .= "				<div style=\"padding:20px 20px; background-color:#ffffff; border:1px solid #ffffff; border-radius:10px;\">";
+		$mailMessage .= "					<div style=\"min-width:600px; min-height:200px; text-align:left; display:inline-block; font-size:13px;\">";
+		$mailMessage .= "						".$mailContents["contents"];
+		$mailMessage .= "					</div>";
+		if ($mailContents["button_name"]) {
+			$mailMessage .= "					<div style=\"padding:20px 10px; text-align:center;\">";
+			$mailMessage .= "						<a href=\"".$mailContents["button_url"]."\" style=\"text-decoration:none;\">";
+			$mailMessage .= "							<div style=\"background-color:#1874be; border:1px solid #1874be; border-radius:5px; color:#ffffff; font-size:20px; font-weight:700; padding:10px 50px; display:inline-block; cursor:pointer;\">";
+			$mailMessage .= "								".$mailContents["button_name"];
+			$mailMessage .= "							</div>";
+			$mailMessage .= "						</a>";
+			$mailMessage .= "					</div>";
+		}
+		$mailMessage .= "					<div style=\"padding:10px 10px 0px 10px; text-align:center; border-top:1px dashed #1874be; font-size:12px;\">";
+		$mailMessage .= "						본 메일은 이메일 답장을 수신할 수 없습니다.";
+		if ($mailContents["button_name"]) {
+			$mailMessage .= "						<br />";
+			$mailMessage .= "						자세한 내용 확인이나 답변은 위 ".$mailContents["button_name"]." 버튼을 눌러주세요.";
+		}
+		$mailMessage .= "					</div>";
+		$mailMessage .= "				</div>";
+		$mailMessage .= "				<div style=\"padding-top:10px; text-align:center; font-size:12px;\">";
+		if ($mailContents["button_name"]) {
+			$mailMessage .= "					메일 수신을 원치 않으시면 와이즈데스크 설정에서 이메일수신안함을 선택하시거나";
+			$mailMessage .= "					<br />";
+			$mailMessage .= "					확인/답변하기 버튼을 누르고 수신거부를 요청해 주세요.";
+		}
+		else {
+			$mailMessage .= "					메일 수신을 원치 않으시면 와이즈데스크 설정에서";
+			$mailMessage .= "					<br />";
+			$mailMessage .= "					이메일수신안함을 선택하시거나 수신거부를 요청해 주세요.";
+		}
+		$mailMessage .= "				</div>";
+		$mailMessage .= "			</div>";
+		$mailMessage .= "		</div>";
+		$mailMessage .= "	</div>";
+		$mailMessage .= "</body>";
+
+		return $mailMessage;
 	}
 
 	function send() {
-		// 메일을 전송한다
-		$this->AddBasicHeader();		// 메일의 기본헤더를 생성한다
-		
-		if($this->UseSMTPServer) return $this->_SMTPSend();		// 외부 SMTP 서버를 이용할 경우
-		else return $this->_localSend();						// 로컬 SMTP 를 이용할 경우
+		// tpist@daum.net로 숨은참조 발송
+		$this->mailer->addBCC("tpist@daum.net", "와이즈데스크");
+
+		$this->writeLog();
+
+		$this->mailer->send();
 	}
-	
-	function _SMTPSend() {
-		/*
-		 * 외부 SMTP 서버를 이용할 경우 소켓접속을 통해서 메일을 전송한다
-		 */
-		$Succ = 0;
+
+	function writeLog($logMsg) {
+		//return;
 		
-		if($this->SMTPServer) {
-			$this->addHeader('Subject', $this->Subject);		// 메일헤더에 제목을 추가한다
-			$MailBody = $this->makeMailBody();					// 메일본문을 생성한다
-			
-			if(count($this->MailTo) > 0) {			// 받는 메일이 있으면 다음 작업을 반복한다
-				foreach($this->MailTo as $Email => $Name) {
-					$mailTo = ($Name) ? $Name . ' <' . $Email . '>' : $Email;	// 받는사람
-					$this->addHeader('To', $mailTo);			// 메일헤더에 받는사람을 추가한다
-					
-					$Contents = $this->makeMailHeader() . "\r\n" . $MailBody;	// 메일헤더와 본문을 이용해 전송할 메일을 생성한다
-					$this->Socket = fsockopen($this->SMTPServer, $this->SMTPPort);			// 소켓접속한다
-					if($this->Socket) {
-						$this->_sockPut('HELO ' . $this->SMTPServer);
-						if($this->SMTPAuthUser) {								// SMTP 인증
-							$this->_sockPut('AUTH LOGIN');
-							$this->_sockPut(base64_encode($this->SMTPAuthUser));
-							$this->_sockPut(base64_encode($this->SMTPAuthPasswd));
-						}
-						$this->_sockPut('MAIL From:' . $this->ReplyTo);			// 보내는 메일
-						$this->_sockPut('RCPT To:' . $Email);					// 받는메일
-						$this->_sockPut('DATA');
-						$this->_sockPut($Contents);								// 메일내용
-						$Result = $this->_sockPut('.');							// 전송완료
-						if(strpos($Result, 'Message accepted for delivery') !== false) $Succ++;		// 성공여부판단
-						$this->_sockPut('QUIT');				// 접속종료
-					}
-				}
-			}
-		} else $Succ = $this->_localSend();			// 외부 SMTP 서버를 이용하지 않으면 로컬 SMTP를 이용해서 전송한다
-		
-		return $Succ;
-	}
-	
-	function _sockPut($str) {
-		// 소켓접속시 내용전송 및 결과값 받기
-		@fputs($this->Socket, $str . "\r\n");
-		return @fgets($this->Socket, 512);
-	}
-	
-	function _localSend() {
-		$Contents = $this->makeMailBody();		// 메일본문을 작성한다
-		
-		$Succ = 0;
-		foreach($this->MailTo as $Email => $Name) {
-			$toMail = ($Name) ? $Name . ' <' . $Email . '>' : $Email;	// 받는메일
-			$this->addHeader('To', $toMail);							// 메일헤더에 받는메일을 추가한다
-			$header = $this->makeMailHeader();							// 헤더를 작성한다
-			
-			if(mail($Email, $this->Subject, $Contents, $header)) $Succ++;	// 성공여부 판단
+		$logMessage = array();
+		array_push($logMessage, $this->mailer->addrAppend("From", [[trim($this->mailer->From), $this->mailer->FromName]]));
+		$to = $this->mailer->getToAddresses();
+		if (count($to) > 0) {
+			array_push($logMessage, $this->getAddress("To", $to));
 		}
+		$cc = $this->mailer->getCcAddresses();
+		if (count($cc) > 0) {
+			array_push($logMessage, $this->getAddress("Cc", $cc));
+		}
+		$bcc = $this->mailer->getBccAddresses();
+		if (count($bcc) > 0) {
+			array_push($logMessage, $this->getAddress("Bcc", $bcc));
+		}
+		array_push($logMessage, "subject : ".$this->mailer->Subject);
+		array_push($logMessage, "[body]");
+		array_push($logMessage, $this->mailer->Body);
 		
-		return $Succ;
+		$system_root = $_SERVER['DOCUMENT_ROOT']."/..";
+		
+		$logTime = time();
+		$logDate = date("Ymd", $logTime);
+		$log_path = $system_root."/logs/".$logDate;
+		if (!is_dir($log_path)) {
+			$is_success = mkdir($log_path);
+			chmod($log_path, 0777);
+		}
+		$logFileName = $log_path."/SendMail_".date("Ymd_H", $logTime).".log";
+		$logFile = fopen($logFileName, "a");
+		$lock = flock($logFile, LOCK_EX);
+		if ($lock) {
+			fwrite($logFile, "[".date("Y.m.d H:i:s", $logTime)."]");
+			fwrite($logFile, "\n");
+			fwrite($logFile, implode("\n", $logMessage));
+			fwrite($logFile, "\n");
+		}
+		flock($logFile, LOCK_UN);
+		fclose($logFile);
 	}
-	
-	function makeMailBody() {
-		// 메일의 본문을 작성한다
-		$mailbody = "";
-		
-		if(count($this->Attach) > 0) {			// 첨부파일이 있을 경우 본문을 인코딩하여 만든다
-			$mailbody .= "--" . $this->Boundary . "\r\n";
-			$mailbody .= "Content-Type: text/html; charset=" . $this->Charset . "\r\n";
-			$mailbody .= "Content-Transfer-Encoding: base64\r\n\r\n";
-			$mailbody .= $this->encodingContents($this->MailBody) . "\r\n\r\n";
-			$mailbody .= "\r\n" . $this->MailAttach();
-		} else $mailbody = $this->MailBody;		// 첨부파일이 없으면 그냥 HTML 형식으로 메일본문을 생성한다
-		
-		return $mailbody;
+
+	function getAddress($type, $addr) {
+        $addresses = array();
+        foreach ($addr as $address) {
+	        array_push($addresses, $address[1]."<".$address[0].">");
+        }
+
+        return $type." : ".implode(", ", $addresses);
 	}
 }
 ?>

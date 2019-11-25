@@ -16,15 +16,17 @@
 	$mailMessage .= "이메일 : ".$_POST["email"];
 	if ($_POST["inquiry_contents"]) {
 		$mailMessage .= "\n";
-		$mailMessage .= "문의내용 : ".$_POST["inquiry_contents"];
+		$mailMessage .= "문의내용 : ";
+		$mailMessage .= "\n";
+		$mailMessage .= $_POST["inquiry_contents"];
 	}
 
 	$mail = new SendMail();
 	
-	$mail->setFrom($_POST["email"], $_POST["customer_name"]);
+	$mail->setFrom("tpist@daum.net", $_POST["company_name"]." / ".$_POST["customer_name"]);
 	$mail->addTo("tpist@daum.net", "WD제휴문의");
-	$mail->setSubject("와이즈데스크 제휴문의 [".$_POST["company_name"]."]"); 
-	$mail->setMailBody($mailMessage, true);
+	$mail->setSubject("와이즈데스크 제휴문의 [".$_POST["company_name"]."]");
+	$mail->setMailBody(nl2br($mailMessage), true);
 	$mail->send();
 
 	$res = array();
